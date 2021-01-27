@@ -13,7 +13,7 @@ after_initialize do
 
     def generate_forum_user_jwt_token
       if !user.forum_user_jwt_token && SiteSetting.forum_user_jwt_secret.present?
-        user.update_column(:forum_user_jwt_token, JWT.encode({ sub: '1234567890', user_id: external_id }, SiteSetting.forum_user_jwt_secret))
+        user.update_column(:forum_user_jwt_token, JWT.encode({ sub: '1234567890', user_id: external_id.to_i }, SiteSetting.forum_user_jwt_secret))
       end
     end
   end
